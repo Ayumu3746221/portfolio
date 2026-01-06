@@ -48,3 +48,4 @@ This is a React 19 + TypeScript portfolio site using Vite 7 with SWC for fast re
 ## 開発ログ
 
 - [2026-01-05](docs/dev-log-2026-01-05.md) - 初期構築（Tailwind導入、トップページ作成）
+- [2026-01-06](docs/dev-log-2026-01-06.md) - モバイル対応（ハンバーガーメニュー実装）
