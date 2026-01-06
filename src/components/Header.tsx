@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/Ayumu3746221" },
@@ -12,6 +12,39 @@ const socialLinks = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMenuOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="border-b border-gray-100">
@@ -35,7 +68,8 @@ export function Header() {
 
         {/* Mobile hamburger button */}
         <button
-          className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          ref={buttonRef}
+          className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
@@ -74,7 +108,10 @@ export function Header() {
 
       {/* Mobile navigation menu */}
       {isMenuOpen && (
-        <nav className="md:hidden border-t border-gray-100 bg-white">
+        <nav
+          ref={menuRef}
+          className="md:hidden border-t border-gray-100 bg-white"
+        >
           <div className="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-4 text-base text-gray-600">
             {socialLinks.map((link) => (
               <a
