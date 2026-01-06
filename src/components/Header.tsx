@@ -38,11 +38,11 @@ export function Header() {
     };
 
     document.addEventListener("keydown", handleEscape);
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMenuOpen]);
 
@@ -73,6 +73,7 @@ export function Header() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {isMenuOpen ? (
             <svg
@@ -80,6 +81,7 @@ export function Header() {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -94,6 +96,7 @@ export function Header() {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -109,8 +112,11 @@ export function Header() {
       {/* Mobile navigation menu */}
       {isMenuOpen && (
         <nav
+          id="mobile-navigation"
           ref={menuRef}
           className="md:hidden border-t border-gray-100 bg-white"
+          role="navigation"
+          aria-label="SNSリンク"
         >
           <div className="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-4 text-base text-gray-600">
             {socialLinks.map((link) => (
