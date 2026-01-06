@@ -115,7 +115,7 @@ export function Header() {
           id="mobile-navigation"
           ref={menuRef}
           className="md:hidden border-t border-gray-100 bg-white"
-          aria-label="link "
+          aria-label="SNS navigation"
         >
           <div className="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-4 text-base text-gray-600">
             {socialLinks.map((link) => (
