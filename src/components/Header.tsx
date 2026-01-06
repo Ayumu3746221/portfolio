@@ -24,6 +24,8 @@ export function Header() {
             <a
               key={link.name}
               href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-gray-900 transition-colors"
             >
               {link.name}
@@ -78,6 +80,8 @@ export function Header() {
               <a
                 key={link.name}
                 href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-gray-900 transition-colors py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
