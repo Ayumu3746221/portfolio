@@ -1,9 +1,13 @@
-export function ProfileSection() {
+interface Props {
+  profileImage: string;
+}
+
+export function ProfileSection({ profileImage }: Props) {
   return (
     <section className="mb-20">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-10">
         <img
-          src="/github-icon.png"
+          src={profileImage}
           alt="Profile"
           className="w-36 h-36 rounded-full object-cover"
         />

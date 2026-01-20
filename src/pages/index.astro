@@ -6,13 +6,14 @@ import { ProfileSection } from "../components/ProfileSection";
 import { AboutSection } from "../components/AboutSection";
 import { CareerSection } from "../components/CareerSection";
 import { ArticlesSection } from "../components/ArticlesSection";
+import profileImage from "../assets/github-icon.png";
 ---
 
 <BaseLayout>
   <div class="min-h-screen bg-white text-gray-900 text-lg">
     <Header client:load />
     <main class="max-w-3xl mx-auto px-6 py-20">
-      <ProfileSection client:load />
+      <ProfileSection client:load profileImage={profileImage.src} />
       <AboutSection client:load />
       <CareerSection client:load />
       <ArticlesSection client:load />
