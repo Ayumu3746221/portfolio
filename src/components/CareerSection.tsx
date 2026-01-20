@@ -9,7 +9,7 @@ export function CareerSection() {
           <span className="text-base text-gray-500 shrink-0">
             2023 - Present
           </span>
-          <span>Computer Science Student at Kanagawa University</span>
+          <span>major Computer Science at Kanagawa University</span>
         </li>
       </ul>
     </section>
