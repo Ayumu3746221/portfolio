@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
+const navLinks = [
+  { name: "Blog", href: "/blog" },
+];
+
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/Ayumu3746221" },
   { name: "Twitter", href: "https://x.com/Ayumu3746221" },
@@ -53,6 +57,15 @@ export function Header() {
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center gap-6 text-base text-gray-600">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="hover:text-gray-900 transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
           {socialLinks.map((link) => (
             <a
               key={link.name}
@@ -115,9 +128,19 @@ export function Header() {
           id="mobile-navigation"
           ref={menuRef}
           className="md:hidden border-t border-gray-100 bg-white"
-          aria-label="SNS navigation"
+          aria-label="Navigation"
         >
           <div className="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-4 text-base text-gray-600">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="hover:text-gray-900 transition-colors py-1"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
             {socialLinks.map((link) => (
               <a
                 key={link.name}

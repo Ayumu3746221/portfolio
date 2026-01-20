@@ -1,11 +1,9 @@
-import profileIcon from "../assets/github-icon.png";
-
 export function ProfileSection() {
   return (
     <section className="mb-20">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-10">
         <img
-          src={profileIcon}
+          src="/github-icon.png"
           alt="Profile"
           className="w-36 h-36 rounded-full object-cover"
         />
