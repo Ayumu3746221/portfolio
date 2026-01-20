@@ -9,7 +9,7 @@ const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="Blog | Ayumu Kukutsu">
+<BaseLayout title="Blog | Ayumu Kukutsu" description="Ayumu Kukutsuの技術ブログ。開発で得た知見や学びを発信しています。">
   <div class="min-h-screen bg-white text-gray-900 text-lg">
     <Header client:load />
     <main class="max-w-3xl mx-auto px-6 py-20">
