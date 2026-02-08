@@ -6,3 +6,17 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+/* 脚注のスタイル */
+.footnotes h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  visibility: hidden;
+}
+
+.footnotes h2::before {
+  content: "脚注";
+  visibility: visible;
+}

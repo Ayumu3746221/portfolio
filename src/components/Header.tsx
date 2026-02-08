@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const navLinks = [
-  { name: "Blog", href: "/blog" },
-];
+const navLinks = [{ name: "Blog", href: "/blog" }];
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/Ayumu3746221" },
@@ -53,7 +51,9 @@ export function Header() {
   return (
     <header className="border-b border-gray-100">
       <div className="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between">
-        <h1 className="text-xl font-medium">Ayumu Kukutsu</h1>
+        <h1 className="text-xl font-medium">
+          <a href="/">Ayumu Kukutsu</a>
+        </h1>
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center gap-6 text-base text-gray-600">
