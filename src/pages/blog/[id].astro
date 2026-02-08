@@ -18,9 +18,35 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post } = Astro.props as Props;
 const { Content } = await render(post);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") || "https://portfolio-9m6.pages.dev";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.pubDate.toISOString(),
+  "dateModified": post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
+  "url": canonicalUrl,
+  "author": {
+    "@type": "Person",
+    "name": "Ayumu Kukutsu",
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Ayumu Kukutsu",
+  },
+};
+
+const safeJsonLd = JSON.stringify(articleJsonLd).replace(/</g, "\\u003c");
 ---
 
-<BaseLayout title={`${post.data.title} | Ayumu Kukutsu`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} | Ayumu Kukutsu`} description={post.data.description} type="article">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={safeJsonLd} />
+  </Fragment>
   <div class="min-h-screen bg-white text-gray-900 text-lg">
     <Header client:load />
     <main class="max-w-3xl mx-auto px-6 py-20">

@@ -7,7 +7,7 @@ export function AboutSection() {
       <p className="text-gray-700 leading-relaxed">
         2025年6月からWeb開発を始めました。
         <br />
-        最近はNetworkとAlgorithmの勉強をしています。
+        最近はHaskellの勉強をしています。
       </p>
     </section>
   );

@@ -4,12 +4,22 @@ import favicon from "../assets/github-icon.png";
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article";
+  canonicalUrl?: string;
 }
 
 const {
   title = "Ayumu Kukutsu | Junior Engineer",
   description = "Ayumu Kukutsuのポートフォリオサイト。ソフトウェアエンジニアとしての経歴やプロジェクト、技術ブログを公開しています。",
+  image = "/og-image.png",
+  type = "website",
+  canonicalUrl: canonicalUrlProp,
 } = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") || "https://portfolio-9m6.pages.dev";
+const canonicalUrl = canonicalUrlProp || new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
@@ -18,8 +28,28 @@ const {
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/png" href={favicon.src} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
     <title>{title}</title>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+
+    <!-- OGP -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Ayumu Kukutsu" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <slot name="head" />
   </head>
   <body>
     <slot />

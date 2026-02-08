@@ -9,6 +9,11 @@ export function ProfileSection({ profileImage }: Props) {
         <img
           src={profileImage}
           alt="Profile"
+          width={144}
+          height={144}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="w-36 h-36 rounded-full object-cover"
         />
         <div className="text-center sm:text-left">

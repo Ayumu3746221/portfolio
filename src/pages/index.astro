@@ -6,14 +6,37 @@ import { ProfileSection } from "../components/ProfileSection";
 import { AboutSection } from "../components/AboutSection";
 import { CareerSection } from "../components/CareerSection";
 import { ArticlesSection } from "../components/ArticlesSection";
-import profileImage from "../assets/github-icon.png";
+import { getImage } from "astro:assets";
+import profileImageSrc from "../assets/github-icon.png";
+
+const optimizedProfileImage = await getImage({
+  src: profileImageSrc,
+  width: 288,
+  height: 288,
+  format: "webp",
+});
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") || "https://portfolio-9m6.pages.dev";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ayumu Kukutsu",
+  "jobTitle": "Software Engineer",
+  "url": siteUrl,
+};
+
+const safeJsonLd = JSON.stringify(personJsonLd).replace(/</g, "\\u003c");
 ---
 
 <BaseLayout>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={safeJsonLd} />
+  </Fragment>
   <div class="min-h-screen bg-white text-gray-900 text-lg">
     <Header client:load />
     <main class="max-w-3xl mx-auto px-6 py-20">
-      <ProfileSection client:load profileImage={profileImage.src} />
+      <ProfileSection client:load profileImage={optimizedProfileImage.src} />
       <AboutSection client:load />
       <CareerSection client:load />
       <ArticlesSection client:load />
