@@ -11,7 +11,8 @@ export function ProfileSection({ profileImage }: Props) {
           alt="Profile"
           width={144}
           height={144}
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
           decoding="async"
           className="w-36 h-36 rounded-full object-cover"
         />

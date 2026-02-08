@@ -25,11 +25,13 @@ const personJsonLd = {
   "jobTitle": "Software Engineer",
   "url": siteUrl,
 };
+
+const safeJsonLd = JSON.stringify(personJsonLd).replace(/</g, "\\u003c");
 ---
 
 <BaseLayout>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+    <script type="application/ld+json" set:html={safeJsonLd} />
   </Fragment>
   <div class="min-h-screen bg-white text-gray-900 text-lg">
     <Header client:load />
