@@ -1,5 +1,4 @@
 ---
-import favicon from "../assets/github-icon.png";
 
 interface Props {
   title?: string;
@@ -27,7 +26,7 @@ const ogImageUrl = new URL(image, siteUrl).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/png" href={favicon.src} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="canonical" href={canonicalUrl} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
