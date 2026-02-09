@@ -20,6 +20,7 @@ const {
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") || "https://ayumu3746221.dev";
 const canonicalUrl = canonicalUrlProp || new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -49,6 +50,14 @@ const ogImageUrl = new URL(image, siteUrl).href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <!-- Google Analytics -->
+    {gaId && <script type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>}
+    {gaId && <script type="text/partytown" set:html={`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${gaId}');
+    `}></script>}
     <slot name="head" />
   </head>
   <body>
