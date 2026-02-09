@@ -1,6 +1,5 @@
 ---
 import favicon from "../assets/github-icon.png";
-import { PUBLIC_GA_MEASUREMENT_ID } from "astro:env/client";
 
 interface Props {
   title?: string;
@@ -21,7 +20,6 @@ const {
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") || "https://ayumu3746221.dev";
 const canonicalUrl = canonicalUrlProp || new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;
-const gaId = PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -51,14 +49,14 @@ const gaId = PUBLIC_GA_MEASUREMENT_ID;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <!-- Google Analytics -->
-    {gaId && <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>}
-    {gaId && <script is:inline define:vars={{ gaId }}>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E051Q4FVS4" is:inline></script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', gaId);
-    </script>}
+      gtag('config', 'G-E051Q4FVS4');
+    </script>
     <slot name="head" />
   </head>
   <body>

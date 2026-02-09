@@ -1,4 +1,4 @@
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -7,15 +7,6 @@ export default defineConfig({
   site: "https://ayumu3746221.dev",
   output: "static",
   integrations: [react(), sitemap()],
-  env: {
-    schema: {
-      PUBLIC_GA_MEASUREMENT_ID: envField.string({
-        context: "client",
-        access: "public",
-        optional: false,
-      }),
-    },
-  },
   vite: {
     plugins: [tailwindcss()],
   },
