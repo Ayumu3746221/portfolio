@@ -1,5 +1,6 @@
 ---
 import favicon from "../assets/github-icon.png";
+import { PUBLIC_GA_MEASUREMENT_ID } from "astro:env/client";
 
 interface Props {
   title?: string;
@@ -20,7 +21,7 @@ const {
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") || "https://ayumu3746221.dev";
 const canonicalUrl = canonicalUrlProp || new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;
-const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const gaId = PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
