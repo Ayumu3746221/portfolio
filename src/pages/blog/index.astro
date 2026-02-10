@@ -27,7 +27,7 @@ const posts = (await getCollection("blog"))
           <ul class="space-y-8">
             {posts.map((post) => (
               <li>
-                <a href={`/blog/${post.id}`} class="group block" aria-label={`記事を読む: ${post.data.title}`}>
+                <a href={`/blog/${post.id}/`} class="group block" aria-label={`記事を読む: ${post.data.title}`}>
                   <article>
                     <time
                       datetime={post.data.pubDate.toISOString()}

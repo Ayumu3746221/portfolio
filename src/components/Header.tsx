@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const navLinks = [{ name: "Blog", href: "/blog" }];
+const navLinks = [{ name: "Blog", href: "/blog/" }];
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/Ayumu3746221" },
