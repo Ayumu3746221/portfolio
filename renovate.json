@@ -16,6 +16,10 @@
   },
   "packageRules": [
     {
+      "matchPackageNames" : ["*"],
+      "minimumReleaseAge": "3 days"
+    },
+    {
       "matchUpdateTypes": [
         "minor",
         "patch",
