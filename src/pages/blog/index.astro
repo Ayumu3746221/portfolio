@@ -12,7 +12,7 @@ const posts = (await getCollection("blog"))
 <BaseLayout title="Blog | Ayumu Kukutsu" description="Ayumu Kukutsuの技術ブログ。開発で得た知見や学びを発信しています。">
   <div class="min-h-screen bg-white text-gray-900 text-lg">
     <Header client:load />
-    <main class="max-w-3xl mx-auto px-6 py-20">
+    <main id="main-content" class="max-w-3xl mx-auto px-6 py-20">
       <a
         href="/"
         class="text-blue-600 hover:underline text-sm mb-4 inline-block"
@@ -60,6 +60,6 @@ const posts = (await getCollection("blog"))
         )
       }
     </main>
-    <Footer client:load />
+    <Footer />
   </div>
 </BaseLayout>

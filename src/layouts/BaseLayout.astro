@@ -59,6 +59,9 @@ const ogImageUrl = new URL(image, siteUrl).href;
     <slot name="head" />
   </head>
   <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-white px-4 py-2 text-sm font-medium text-blue-600 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+      メインコンテンツへスキップ
+    </a>
     <slot />
   </body>
 </html>

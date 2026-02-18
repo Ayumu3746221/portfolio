@@ -8,7 +8,7 @@ export function ProfileSection({ profileImage }: Props) {
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-10">
         <img
           src={profileImage}
-          alt="Profile"
+          alt="Ayumu Kukutsu のプロフィール写真"
           width={144}
           height={144}
           loading="eager"
