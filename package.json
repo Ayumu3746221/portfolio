@@ -7,9 +7,7 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"lint": "eslint .",
-		"preview": "astro preview",
-		"deploy": "npm run build && wrangler pages deploy",
-		"cf-typegen": "wrangler types"
+		"deploy": "pnpm build && wrangler pages deploy"
 	},
 	"dependencies": {
 		"@astrojs/react": "^4.4.2",
