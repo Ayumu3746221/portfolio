@@ -48,12 +48,9 @@ export function Header() {
         return;
       }
       if (e.key === "Tab") {
-        const elements = Array.from(
-          menuRef.current?.querySelectorAll<HTMLElement>("a[href], button") ?? []
-        );
-        if (elements.length === 0) return;
-        const first = elements[0];
-        const last = elements[elements.length - 1];
+        if (focusableElements.length === 0) return;
+        const first = focusableElements[0];
+        const last = focusableElements[focusableElements.length - 1];
         if (e.shiftKey) {
           if (document.activeElement === first) {
             e.preventDefault();

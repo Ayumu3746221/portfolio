@@ -6,7 +6,7 @@ import astroPlugin from 'eslint-plugin-astro'
 import { globalIgnores } from 'eslint/config'
 
 export default tseslint.config([
-  globalIgnores(['dist', '.astro', 'worker-configuration.d.ts', 'src/env.d.ts']),
+  globalIgnores(['dist', '.astro/**', 'worker-configuration.d.ts', 'src/env.d.ts']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
