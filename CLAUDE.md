@@ -44,11 +44,10 @@ src/
 ## コマンド
 
 ```bash
-npm run dev       # 開発サーバー起動
-npm run build     # Astroビルド（出力: dist/）
-npm run lint      # ESLint実行
-npm run preview   # ビルド後のプレビュー
-npm run deploy    # ビルド & Cloudflare Pagesへデプロイ
+pnpm dev       # 開発サーバー起動
+pnpm build     # Astroビルド（出力: dist/）
+pnpm lint      # ESLint実行
+pnpm deploy    # ビルド & Cloudflare Pagesへデプロイ
 ```
 
 ## アーキテクチャ
