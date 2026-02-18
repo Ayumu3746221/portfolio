@@ -7,12 +7,31 @@ import { getCollection } from "astro:content";
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") || "https://ayumu3746221.dev";
+
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Blog | Ayumu Kukutsu",
+  "description": "Ayumu Kukutsuの技術ブログ。開発で得た知見や学びを発信しています。",
+  "url": `${siteUrl}/blog/`,
+  "author": {
+    "@type": "Person",
+    "name": "Ayumu Kukutsu"
+  }
+};
+
+const safeCollectionJsonLd = JSON.stringify(collectionJsonLd).replace(/</g, "\\u003c");
 ---
 
 <BaseLayout title="Blog | Ayumu Kukutsu" description="Ayumu Kukutsuの技術ブログ。開発で得た知見や学びを発信しています。">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={safeCollectionJsonLd} />
+  </Fragment>
   <div class="min-h-screen bg-white text-gray-900 text-lg">
     <Header client:load />
-    <main class="max-w-3xl mx-auto px-6 py-20">
+    <main id="main-content" class="max-w-3xl mx-auto px-6 py-20">
       <a
         href="/"
         class="text-blue-600 hover:underline text-sm mb-4 inline-block"
@@ -60,6 +79,6 @@ const posts = (await getCollection("blog"))
         )
       }
     </main>
-    <Footer client:load />
+    <Footer />
   </div>
 </BaseLayout>

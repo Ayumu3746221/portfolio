@@ -52,17 +52,20 @@ const ogImageUrl = new URL(image, siteUrl).href;
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E051Q4FVS4" is:inline></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
+      // eslint-disable-next-line prefer-rest-params
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-E051Q4FVS4');
     </script>
     <slot name="head" />
+    <style is:global>
+      @import "../index.css";
+    </style>
   </head>
   <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-white px-4 py-2 text-sm font-medium text-blue-600 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+      メインコンテンツへスキップ
+    </a>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  @import "../index.css";
-</style>

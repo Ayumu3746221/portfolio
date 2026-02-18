@@ -1,9 +1,9 @@
 export function AboutSection() {
   return (
     <section className="mb-20">
-      <h3 className="text-xl font-semibold mb-6 pb-2 border-b border-gray-200">
+      <h2 className="text-xl font-semibold mb-6 pb-2 border-b border-gray-200">
         About
-      </h3>
+      </h2>
       <p className="text-gray-700 leading-relaxed">
         2025年6月からWeb開発を始めました。
         <br />
