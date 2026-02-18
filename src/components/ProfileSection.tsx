@@ -17,7 +17,7 @@ export function ProfileSection({ profileImage }: Props) {
           className="w-36 h-36 rounded-full object-cover"
         />
         <div className="text-center sm:text-left">
-          <h2 className="text-4xl font-bold mb-4">Ayumu Kukutsu</h2>
+          <h1 className="text-4xl font-bold mb-4">Ayumu Kukutsu</h1>
           <p className="text-xl text-gray-600 leading-relaxed">
             Software Engineer
           </p>

@@ -18,14 +18,15 @@ export function Header() {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen || !menuRef.current) return;
 
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsMenuOpen(false);
-        buttonRef.current?.focus();
-      }
-    };
+    // メニューが開いた時、最初のフォーカス可能要素にフォーカス
+    const focusableElements = Array.from(
+      menuRef.current.querySelectorAll<HTMLElement>("a[href], button")
+    );
+    if (focusableElements.length > 0) {
+      focusableElements[0].focus();
+    }
 
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
@@ -39,50 +40,41 @@ export function Header() {
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMenuOpen]);
-
-  useEffect(() => {
-    if (!isMenuOpen || !menuRef.current) return;
-
-    // メニューが開いた時、最初のフォーカス可能要素にフォーカス
-    const focusableElements = Array.from(
-      menuRef.current.querySelectorAll<HTMLElement>('a[href], button')
-    );
-    if (focusableElements.length > 0) {
-      focusableElements[0].focus();
-    }
-
-    // フォーカストラップ
-    const handleTabKey = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
-      const elements = Array.from(
-        menuRef.current?.querySelectorAll<HTMLElement>('a[href], button') ?? []
-      );
-      if (elements.length === 0) return;
-      const first = elements[0];
-      const last = elements[elements.length - 1];
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
+    // キーボードイベント処理（Escape + Tab フォーカストラップ）
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMenuOpen(false);
+        buttonRef.current?.focus();
+        return;
+      }
+      if (e.key === "Tab") {
+        const elements = Array.from(
+          menuRef.current?.querySelectorAll<HTMLElement>("a[href], button") ?? []
+        );
+        if (elements.length === 0) return;
+        const first = elements[0];
+        const last = elements[elements.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
         }
       }
     };
 
-    document.addEventListener('keydown', handleTabKey);
-    return () => document.removeEventListener('keydown', handleTabKey);
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isMenuOpen]);
 
   return (
