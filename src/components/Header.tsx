@@ -48,15 +48,52 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    if (!isMenuOpen || !menuRef.current) return;
+
+    // メニューが開いた時、最初のフォーカス可能要素にフォーカス
+    const focusableElements = Array.from(
+      menuRef.current.querySelectorAll<HTMLElement>('a[href], button')
+    );
+    if (focusableElements.length > 0) {
+      focusableElements[0].focus();
+    }
+
+    // フォーカストラップ
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const elements = Array.from(
+        menuRef.current?.querySelectorAll<HTMLElement>('a[href], button') ?? []
+      );
+      if (elements.length === 0) return;
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleTabKey);
+    return () => document.removeEventListener('keydown', handleTabKey);
+  }, [isMenuOpen]);
+
   return (
     <header className="border-b border-gray-100">
       <div className="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between">
-        <h1 className="text-xl font-medium">
+        <p className="text-xl font-medium">
           <a href="/">Ayumu Kukutsu</a>
-        </h1>
+        </p>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center gap-6 text-base text-gray-600">
+        <nav className="hidden md:flex items-center gap-6 text-base text-gray-600" aria-label="メインナビゲーション">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -73,6 +110,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-900 transition-colors"
+              aria-label={`${link.name}（外部リンク、新しいタブで開きます）`}
             >
               {link.name}
             </a>
@@ -149,6 +187,7 @@ export function Header() {
                 rel="noopener noreferrer"
                 className="hover:text-gray-900 transition-colors py-3"
                 onClick={() => setIsMenuOpen(false)}
+                aria-label={`${link.name}（外部リンク、新しいタブで開きます）`}
               >
                 {link.name}
               </a>
