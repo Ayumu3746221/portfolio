@@ -88,7 +88,7 @@ const safeJsonLd = JSON.stringify(articleJsonLd).replace(/</g, "\\u003c");
         </div>
         <div class="mt-8">
           <a
-            href={`https://b.hatena.ne.jp/entry/${canonicalUrl}`}
+            href={`https://b.hatena.ne.jp/entry/s/${canonicalUrl.replace(/^https?:\/\//, '')}`}
             class="hatena-bookmark-button"
             data-hatena-bookmark-layout="standard-balloon"
             data-hatena-bookmark-lang="ja"
