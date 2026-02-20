@@ -4,7 +4,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://b.st-hatena.com; img-src 'self' data: https://b.st-hatena.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://b.st-hatena.com; img-src 'self' data: https://b.st-hatena.com https://b.hatena.ne.jp; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://b.hatena.ne.jp; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; frame-ancestors 'none'; frame-src 'self' https://b.hatena.ne.jp
 
 # Cache headers
 /_astro/*
