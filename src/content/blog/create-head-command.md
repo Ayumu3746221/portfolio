@@ -16,7 +16,7 @@ draft: false
 
 [nlを自作した備忘録](/blog/create-nl-command/)
 
-## 自分で作成した`haed` command
+## 自分で作成した`head` command
 
 ```haskell
 {-# LANGUAGE OverloadedStrings #-}
